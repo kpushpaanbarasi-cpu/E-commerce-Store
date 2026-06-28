@@ -24,7 +24,7 @@ productsHTML+=`<div class="product-container">
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${products.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -40,7 +40,7 @@ productsHTML+=`<div class="product-container">
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-${products.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -55,21 +55,33 @@ productsHTML+=`<div class="product-container">
               document.querySelector('.js-product').innerHTML=productsHTML;
               document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
                 button.addEventListener('click',()=>{
-                  const productId=(button.dataset.productId);
+                  const {productId}=button.dataset;
+                  const quantity=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+                   const addedmessage=document.querySelector(`.js-added-${productId}`);
+                 addedmessage.classList.add('added-to-cart-visible');
+                 
                   let matchingitem;
-                  cart.forEach((cart)=>{
-                    if(productId === cart.productId){
-                        matchingitem=cart;
+
+                  cart.forEach((item)=>{
+                    if(productId === item.productId){
+                        matchingitem=item;
                     }
                   });
                   if(matchingitem){
-                    matchingitem.quantity+=1;
+                    matchingitem.quantity+=quantity;
                   }else{
                 cart.push({
-                        productId:productId,
-                        quantity:1
+                        productId,
+                        quantity
                 });  
-              }    
-                console.log(cart);
+              } 
+              let cartquantity=0;
+              cart.forEach((item)=>{
+                cartquantity+=item.quantity;
+               document.querySelector('.js-add-button').innerHTML=cartquantity;
+              
+               
+               
+              })   
                 });
               });

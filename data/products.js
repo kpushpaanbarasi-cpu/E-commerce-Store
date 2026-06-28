@@ -656,5 +656,54 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+    {
+    id: "f2847e9-5329-383f-b7cf-57fde044a948",
+    image: "images/products/fluidcolor.webp",
+    name: "DOMS vibrant Fluid Acrylic Colour",
+    rating: {
+      stars: 3.5,
+      count: 237
+    },
+    priceCents: 1000,
+    keywords: [
+      "paint",
+      "colour",
+      "doms",
+      "fluid"
+    ]
+  },
+    {
+    id: "re847e9-5323-403f-b7cf-57044hjka934",
+    image: "images/products/oilpaste.webp",
+    name: "DOMS Oil Paste-12 colours",
+    rating: {
+      stars: 4.0,
+      count: 1000
+    },
+    priceCents: 500,
+    keywords: [
+    "cryon",
+      "colour",
+      "oil paste",
+      "doms"
+    ]
+  },
+  {
+    id: "re457e9-5332-403f-b7cf-57044htyu923",
+    image: "images/products/sticker.webp",
+    name: "Aesthetic Stickers(20 piece)",
+    rating: {
+      stars: 4.0,
+      count: 1000
+    },
+    priceCents: 400,
+    keywords: [
+    "journel stickers",
+      "sticker",
+      "paper",
+      "Aesthetic stickers"
+    ]
   }
+  
 ];
