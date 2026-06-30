@@ -1,15 +1,15 @@
-import {cart}from'../data/cart.js';
+import {cart,deletecart}from'../data/cart.js';
 import{products}from'../data/products.js';
 export let cartHTML='';
-cart.forEach((cartItem)=>{
-  const productId=cartItem.productId;
+cart.forEach((cartitem)=>{
+  const productId=cartitem.productId;
       let matchingproduct;
       products.forEach((product)=>{
         if(product.id===productId){
           matchingproduct=product;
         }
       });
-   cartHTML+=`<div class="cart-item-container ">
+   cartHTML+=`<div class="cart-item-container js-cart-item-container-${matchingproduct.id}">
             <div class="delivery-date">
               Delivery date: Wednesday, June 15
             </div>
@@ -23,16 +23,17 @@ cart.forEach((cartItem)=>{
                   ${matchingproduct.name}
                 </div>
                 <div class="product-price">
-                   ${(matchingproduct.priceCents/100).toFixed(2)}
+                   $${(matchingproduct.priceCents/100).toFixed(2)}
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label">${cartitem.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-click-delete"
+                  data-product-id="${matchingproduct.id}">
                     Delete
                   </span>
                 </div>
@@ -84,3 +85,12 @@ cart.forEach((cartItem)=>{
         </div>`
        }); 
   document.querySelector('.js-summary').innerHTML=cartHTML;
+  document.querySelectorAll('.js-click-delete').forEach((button)=>{
+    button.addEventListener('click',()=>{
+      const {productId}=button.dataset;
+      deletecart(productId);
+     const container= document.querySelector( `.js-cart-item-container-${productId}`);
+     container.remove();
+    });
+  });
+
