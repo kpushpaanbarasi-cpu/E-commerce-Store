@@ -1,7 +1,5 @@
 import{cart,Addtocart,updatequantity}from'../data/cart.js';
 import{products}from'../data/products.js';
-import{cartHTML}from'../scripts/checkout.js';
-
 let productsHTML='';
 products.forEach((products)=>{
 productsHTML+=`<div class="product-container">
