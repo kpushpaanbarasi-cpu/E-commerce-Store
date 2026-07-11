@@ -54,13 +54,16 @@ Add to Cart
 
 });
 document.querySelector('.js-product').innerHTML=productsHTML;
+const cartquantity = updatequantity();
+document.querySelector('.js-add-button').innerHTML = cartquantity;
 const addMessagetimeoutid= {};
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
   button.addEventListener('click',()=>{
     const {productId}=button.dataset;
     const quantity=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-     Addtocart(productId,quantity);
-     updatequantity();
+           Addtocart(productId,quantity);
+     const cartquantity=updatequantity();
+  document.querySelector('.js-add-button').innerHTML=cartquantity;
       const addedmessage=document.querySelector(`.js-added-${productId}`);
     addedmessage.classList.add('added-to-cart-visible');
       const previoustimeoutid=addMessagetimeoutid[productId];
