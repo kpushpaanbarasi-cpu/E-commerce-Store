@@ -4,7 +4,7 @@ import{deliveryOptions,getDeliveryOption}from'../../data/deliveryOptions.js';
 import{currency}from'../utils/money.js';
 import dayjs from'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {renderPayment} from './paymentSummary.js';
-            function saveUpdatestorage(){
+           export function saveUpdatestorage(){
     document.querySelectorAll('.js-click-update').forEach((link)=>{
     link.addEventListener('click',()=>{
       const {productId}=link.dataset;
@@ -20,9 +20,9 @@ import {renderPayment} from './paymentSummary.js';
         link.innerHTML='Update';
         updatequantity(newquantity,productId);
         document.querySelector('.js-checkout-title').innerHTML=`${updatequantity()} items`;
-          renderPayment();
       }
-      });
+      renderPayment();
+    });
     });
   }
 export function renderCheckout(){
@@ -122,6 +122,7 @@ cart.forEach((cartitem)=>{
             const{productId,deliveryOptionId}=radio.dataset;
              updateDeliveryOption(productId, deliveryOptionId);
                renderCheckout();
+               renderPayment();
           });
         });
       }
