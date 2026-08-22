@@ -1,54 +1,10 @@
 import {cart,deletecart,updatequantity,updateDeliveryOption}from'../../data/cart.js';
 import{products,getproductId}from'../../data/products.js';
-import{deliveryOptions}from'../../data/deliveryOptions.js';
+import{deliveryOptions,getDeliveryOption}from'../../data/deliveryOptions.js';
 import{currency}from'../utils/money.js';
 import dayjs from'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
- function renderPayment(){
-  let paymentHTML='';  
-  paymentHTML+=`<div class="payment-summary-title">
-            Order Summary
-          </div>
-
-          <div class="payment-summary-row">
-            <div>Items (${updatequantity()})</div>
-            <div class="payment-summary-money">$${currency(getTotal())}</div>
-          </div>
-
-          <div class="payment-summary-row">
-            <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$4.99</div>
-          </div>
-
-          <div class="payment-summary-row subtotal-row">
-            <div>Total before tax:</div>
-            <div class="payment-summary-money">$47.74</div>
-          </div>
-
-          <div class="payment-summary-row">
-            <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">$4.77</div>
-          </div>
-
-          <div class="payment-summary-row total-row">
-            <div>Order total:</div>
-            <div class="payment-summary-money">$52.51</div>
-          </div>
-
-          <button class="place-order-button button-primary">
-            Place your order
-          </button>
-        </div>`
-        document.querySelector('.js-payment-summary').innerHTML=paymentHTML;
-      }
-         function getTotal(){
-      let productTotal=0;
-      cart.forEach((cartitem)=>{
-        const matchingproduct=getproductId(cartitem.productId);
-        productTotal+=matchingproduct.priceCents*cartitem.quantity;
-      });
-      return productTotal;
-    }
-             function saveUpdatestorage(){
+import {renderPayment} from './paymentSummary.js';
+            function saveUpdatestorage(){
     document.querySelectorAll('.js-click-update').forEach((link)=>{
     link.addEventListener('click',()=>{
       const {productId}=link.dataset;
@@ -73,12 +29,7 @@ export function renderCheckout(){
  let cartHTML='';
 cart.forEach((cartitem)=>{
   const deliveryOptionId=cartitem.deliveryOptionId;
-  let deliveryOption;
-  deliveryOptions.forEach((option)=>{
-    if(option.id===deliveryOptionId){
-      deliveryOption=option;
-    }
-  });
+  const deliveryOption=getDeliveryOption(deliveryOptionId);
   const today=dayjs();
   const deliverydate=today.add(deliveryOption.duedate,'day');
   const dateString= deliverydate.format('dddd,MMMM,D');
