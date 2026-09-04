@@ -38,7 +38,7 @@ ${products.rating.count}
 <option value="10">10</option>
 </select>
 </div>
-
+    ${products.extraInfo()}
 <div class="product-spacer"></div>
 
 <div class="added-to-cart js-added-${products.id}">
