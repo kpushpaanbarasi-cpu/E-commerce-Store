@@ -126,9 +126,7 @@ cart.forEach((cartitem)=>{
           });
         });
       }
-      renderPayment();
-      renderCheckout();
-      saveUpdatestorage();
+   
       
       
     

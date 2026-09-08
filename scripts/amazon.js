@@ -1,7 +1,9 @@
 import{cart,Addtocart,updatequantity}from'../data/cart.js';
-import{products}from'../data/products.js';
-let productsHTML='';
-products.forEach((products)=>{
+import{products,loadProducts}from'../data/products.js';
+loadProducts(renderProducts);
+function renderProducts(){
+  let productsHTML='';
+  products.forEach((products)=>{
 productsHTML+=`<div class="product-container">
 <div class="product-image-container">
 <img class="product-image"
@@ -53,6 +55,7 @@ Add to Cart
 </div> `;
 
 });
+
 document.querySelector('.js-product').innerHTML=productsHTML;
 const cartquantity = updatequantity();
 document.querySelector('.js-add-button').innerHTML = cartquantity;
@@ -76,3 +79,4 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
       addMessagetimeoutid[productId]=timeoutid;  
   });
 });
+}

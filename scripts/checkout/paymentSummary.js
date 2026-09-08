@@ -46,6 +46,7 @@ import{currency}from'../utils/money.js';
         </div>`
         document.querySelector('.js-payment-summary').innerHTML=paymentHTML;
       }
+      
        export function getTotal(){
       let productTotal=0;
       let shippingPriceCents=0;
