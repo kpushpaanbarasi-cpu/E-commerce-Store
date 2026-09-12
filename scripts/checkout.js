@@ -13,8 +13,7 @@ await new Promise((resolve) => {
       resolve();
     });
   });
-}catch(error)
-{
+}catch(error){
   console.log("error.Sorry");
 }
     renderPayment();
