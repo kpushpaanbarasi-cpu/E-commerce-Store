@@ -5,12 +5,14 @@
     name;
     rating;
     priceCents;
+    keywords;
     constructor(productDetails){
      this.id=productDetails.id;
      this.image=productDetails.image;
      this.rating=productDetails.rating;
      this.name=productDetails.name;
      this.priceCents=productDetails.priceCents;
+      this.keywords=productDetails.keywords;
     }
     getStarsUrl(){
   return `images/ratings/rating-${this.rating.stars*10}.png`;
