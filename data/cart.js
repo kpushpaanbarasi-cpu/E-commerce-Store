@@ -53,6 +53,12 @@ export function updateDeliveryOption(productId,deliveryOptionId){
 });
 savetostorage();
 }
+export function clearCart() {
+  cart = [];
+  savetostorage();
+}
+console.log(cart);
+console.log(localStorage.getItem('cart'));
   export function loadCart(fun){
       const xhr= new XMLHttpRequest();
       xhr.addEventListener('load',()=>{
@@ -61,5 +67,5 @@ savetostorage();
       });
       xhr.open('GET','https://supersimplebackend.dev/Cart');
       xhr.send();
-   
+  
     }

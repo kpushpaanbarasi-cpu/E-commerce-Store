@@ -1,4 +1,4 @@
-import {cart,updatequantity}from'../../data/cart.js';
+import {cart,updatequantity,clearCart}from'../../data/cart.js';
 import{getproductId}from'../../data/products.js';
 import{getDeliveryOption}from'../../data/deliveryOptions.js';
 import{currency}from'../utils/money.js';
@@ -60,6 +60,7 @@ import {addOrder,save}from'../../data/orders.js';
           });
         const order= await response.json();
         addOrder(order);
+        clearCart();
         save();
           }catch(error){
             console.log('ERROR');
