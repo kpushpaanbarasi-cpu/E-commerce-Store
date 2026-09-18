@@ -6,6 +6,7 @@ async function loadPage(){
     await loadProductsFetch();
     let ordersHTML='';
     orders.forEach((order) => {
+        console.log('FULL ORDER:', order);
     const orderTimeString = dayjs(order.orderTime).format('MMMM D');
     console.log('ORDER ID:', order.id);
   ordersHTML+=`

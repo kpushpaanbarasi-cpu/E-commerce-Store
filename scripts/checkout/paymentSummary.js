@@ -58,12 +58,16 @@ import {addOrder,save}from'../../data/orders.js';
               cart:cart
             })
           });
-        const order= await response.json();
-        addOrder(order);
-        clearCart();
-        save();
+      const order = await response.json();
+
+if (!response.ok) {
+  throw new Error(order.errorMessage);
+}
+
+addOrder(order);
+clearCart();
           }catch(error){
-            console.log('ERROR');
+            console.log('ERROR:',error);
           }
           window.location.href='orders.html';
       });
